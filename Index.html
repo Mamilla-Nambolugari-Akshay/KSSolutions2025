@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KS Solutions - Freelance Consultation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="./KSSolutionsCSS.css" />
+
+
+</head>
+<style>
+
+/* 1. Initial State: Hidden and slightly offset (Slide-up effect) */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px); /* Start 40 pixels below its final position */
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Define smooth transitions */
+    /* Note: You can customize the effect: */
+    /* Fade-in only: transform: none; */
+    /* Slide-in from left: transform: translateX(-40px); */
+}
+
+/* 2. Final State: Visible and in its final position (Animation Complete) */
+.scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0); /* Move to original position */
+}
+
+
+
+/* General Resets and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #000; /* Main background color */
+    color: #fff; /* Default text color */
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Navbar Styling --- */
+.navbar {
+    background-color: #000;
+    padding: 20px 0;
+    border-bottom: 1px solid #333; /* A subtle separator if desired */
+}
+
+.navbar .container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.navbar .logo {
+font-size: 24px;
+font-weight: 700;
+color: #fff;
+letter-spacing: 2px;
+}
+
+.navbar nav ul {
+list-style: none;
+display: flex;
+}
+
+.navbar nav ul li {
+margin-left: 30px;
+}
+
+.navbar nav ul li a {
+color: #fff;
+text-decoration: none;
+font-weight: 400;
+font-size: 15px;
+transition: color 0.3s ease;
+}
+
+.navbar nav ul li a:hover,
+.navbar nav ul li a.active {
+	color: #f7cd46; /* Highlight color from the image */
+}
+
+/* --- Hero Section Styling --- */
+.hero-section {
+background-color: #000;
+padding: 100px 0; /* Adjust padding as needed */
+min-height: 80vh; /* Ensure it takes up most of the viewport height */
+display: flex;
+align-items: center;
+}
+
+.hero-section .hero-content {
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.hero-section .text-content {
+flex: 1;
+min-width: 300px; /* Minimum width before wrapping */
+padding-right: 10%; /* Space between text and image */
+text-align: center;
+padding-left: 10%;
+}
+
+.hero-section .image-content {
+flex: 1;
+min-width: 300px; /* Minimum width before wrapping */
+text-align: right; /* Align image to the right */
+}
+
+.hero-section .profile-img {
+max-width: 80%; /* Adjust size as per reference */
+height: auto;
+border-radius: 5px; /* Subtle border-radius if desired */
+object-fit: cover;
+}
+
+.hero-section .greeting {
+color: #fff;
+font-size: 16px;
+margin-bottom: 10px;
+}
+
+.hero-section h1 {
+font-size: 60px; /* Large heading as in reference */
+font-weight: 700;
+line-height: 1.1;
+margin-bottom: 15px;
+}
+
+.hero-section .highlight {
+color: #f7cd46; /* Yellow highlight color */
+}
+
+.hero-section .subtitle {
+font-size: 22px;
+color: #bbb;
+margin-bottom: 30px;
+}
+
+.hero-buttons .btn {
+display: inline-block;
+padding: 15px 35px;
+border-radius: 5px;
+text-decoration: none;
+font-weight: 600;
+transition: background-color 0.3s ease, color 0.3s ease;
+margin-right: 15px;
+font-size: 16px;
+}
+
+.hero-buttons .btn-primary {
+background-color: #f7cd46; /* Yellow button */
+color: #000;
+border: 1px solid #f7cd46;
+}
+
+.hero-buttons .btn-primary:hover {
+background-color: #e6be3f; /* Slightly darker yellow on hover */
+border-color: #e6be3f;
+}
+
+.hero-buttons .btn-secondary {
+background-color: transparent;
+color: #f7cd46; /* Yellow text, transparent background */
+border: 1px solid #f7cd46;
+}
+
+.hero-buttons .btn-secondary:hover {
+background-color: #f7cd46;
+color: #000;
+}
+
+/* --- About Me Section Styling --- */
+.about-me-section {
+background-color: #0d0d0d; /* Slightly different dark background */
+padding: 80px 0;
+border-top: 1px solid #333;
+}
+
+.about-me-section .about-content {
+display: flex;
+align-items: center;
+justify-content: center; /* Center items for the about section layout */
+gap: 40px; /* Space between image and text */
+flex-wrap: wrap;
+}
+
+.about-me-section .about-image {
+flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.about-me-section .profile-img-small {
+width: 150px; /* Small image size as in reference */
+height: 150px;
+border-radius: 50%; /* Make it round */
+object-fit: cover;
+border: 3px solid #f7cd46; /* Yellow border */
+}
+
+.about-me-section .about-text {
+flex: 2; /* Text takes more space */
+min-width: 300px;
+}
+
+.about-me-section h2 {
+font-size: 45px;
+font-weight: 700;
+margin-bottom: 20px;
+position: relative;
+}
+
+.about-me-section p {
+font-size: 17px;
+color: #ccc;
+margin-bottom: 15px;
+}
+
+.about-me-section .name-display {
+font-weight: 600;
+color: #fff;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+.hero-section h1 {
+font-size: 40px;
+}
+
+.hero-section .subtitle {
+font-size: 20px;
+}
+
+.hero-section .text-content {
+padding-right: 20px;
+}
+
+.hero-section .profile-img {
+max-width: 90%;
+}
+}
+
+@media (max-width: 768px) {
+.navbar .container {
+flex-direction: column;
+}
+
+.navbar nav ul {
+margin-top: 15px;
+flex-wrap: wrap; /* Allow nav items to wrap */
+justify-content: center;
+}
+
+.navbar nav ul li {
+margin: 5px 15px;
+}
+
+.hero-section .hero-content {
+flex-direction: column-reverse; /* Image above text on small screens */
+text-align: center;
+}
+
+.hero-section .text-content,
+.hero-section .image-content {
+padding-right: 0;
+margin-bottom: 40px; /* Space between image and text */
+}
+
+.hero-section .profile-img {
+max-width: 40%; /* Smaller image on small screens */
+border-radius: 100%;
+display: block;
+margin: 0 auto;
+margin-top: 10%;
+}
+
+.about-me-section .about-content {
+flex-direction: column;
+text-align: center;
+}
+
+.about-me-section h2::before {
+font-size: 60px;
+top: -10px;
+left: 50%;
+transform: translateX(-50%); /* Center the pseudo-element */
+white-space: nowrap; /* Prevent "About" from wrapping */
+}
+}
+
+@media (max-width: 480px) {
+.hero-section h1 {
+font-size: 40px;
+}
+
+.hero-section .subtitle {
+font-size: 18px;
+}
+
+.hero-buttons .btn {
+padding: 12px 25px;
+font-size: 14px;
+margin-right: 10px;
+}
+
+.about-me-section h2 {
+font-size: 35px;
+}
+}
+
+/* --- New Technical Profile Section Styling --- */
+
+#technical-profile {
+padding: 80px 0;
+background-color: #0d0d0d; /* Slightly different dark background */
+border-top: 1px solid #333;
+transition: opacity 0.4s ease-in-out;
+}
+
+/* Class to hide the section initially and control fade effect */
+.hidden-section {
+display: none; /* Hidden by default */
+opacity: 0;
+}
+
+/* When the section is visible, make it opaque */
+.visible-section {
+display: block;
+opacity: 1;
+}
+
+#technical-profile h2 {
+font-size: 45px;
+font-weight: 700;
+margin-bottom: 40px;
+text-align: center;
+}
+
+.profile-block {
+margin-bottom: 40px;
+padding: 20px;
+border: 1px solid #333;
+border-radius: 8px;
+background-color: #1a1a1a; /* Darker card background */
+}
+
+.profile-block h3 {
+font-size: 24px;
+color: #f7cd46;
+margin-bottom: 15px;
+border-bottom: 2px solid #333;
+padding-bottom: 10px;
+}
+
+/* Table Styling */
+.table-container {
+overflow-x: auto; /* Ensure tables are responsive */
+}
+
+.technical-content table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 10px;
+}
+
+.technical-content th,
+.technical-content td {
+padding: 12px 15px;
+border-bottom: 1px solid #333;
+text-align: left;
+font-size: 15px;
+}
+
+.technical-content th {
+background-color: #2a2a2a;
+color: #f7cd46;
+font-weight: 600;
+width: 30%; /* Set width for the label column */
+}
+
+.technical-content td {
+color: #ccc;
+}
+
+/* List Styling */
+.profile-block ul {
+list-style: none;
+padding: 0;
+}
+
+.profile-block ul li {
+background-color: #222;
+padding: 10px 15px;
+margin-bottom: 8px;
+border-radius: 4px;
+border-left: 5px solid #f7cd46;
+font-size: 16px;
+color: #fff;
+}
+
+/* CTA Banner Styling */
+.cta-banner {
+text-align: center;
+padding: 30px;
+background-color: #f7cd46;
+border-radius: 8px;
+margin-top: 50px;
+}
+
+.cta-banner p {
+color: #000;
+font-size: 20px;
+font-weight: 600;
+margin-bottom: 15px;
+}
+
+.btn-cta {
+background-color: #000 !important;
+color: #f7cd46 !important;
+border: 1px solid #000 !important;
+}
+
+.btn-cta:hover {
+background-color: #333 !important;
+color: #fff !important;
+}
+/* --- Industry Services Section Styling --- */
+
+.industry-services-section {
+padding: 80px 0;
+background-color: #000; /* Matching the overall dark theme */
+color: #fff;
+}
+
+.industry-services-section .section-title {
+font-size: 45px;
+font-weight: 700;
+text-align: center;
+margin-bottom: 10px;
+}
+
+.industry-services-section .section-subtitle {
+text-align: center;
+font-size: 18px;
+color: #bbb;
+margin-bottom: 60px;
+}
+
+.service-block {
+margin-bottom: 50px;
+padding: 40px;
+border-radius: 10px;
+background-color: #0d0d0d; /* Slightly lighter background for the block */
+}
+
+.service-title {
+font-size: 32px;
+font-weight: 600;
+color: #f7cd46; /* Accent color for titles */
+margin-bottom: 10px;
+}
+
+.service-intro {
+font-size: 18px;
+color: #ccc;
+margin-bottom: 30px;
+border-bottom: 1px solid #333;
+padding-bottom: 20px;
+}
+
+.features-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive 2-column layout */
+gap: 30px;
+row-gap:80px;
+}
+
+.feature-card {
+background-color: #1a1a1a;
+padding: 25px;
+border-radius: 8px;
+border-left: 5px solid #444;
+transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.feature-card:hover {
+transform: translateY(-5px);
+border-left-color: #f7cd46; /* Yellow highlight on hover */
+}
+
+.feature-card h4 {
+font-size: 20px;
+color: #fff;
+margin-bottom: 10px;
+font-weight: 600;
+}
+
+.feature-card p {
+font-size: 15px;
+color: #bbb;
+}
+
+/* Specific styling for the technical focus cards */
+.feature-card.technical-focus {
+background-color: #222; /* Darker background to distinguish tech focus */
+border-left-color: #007bff; /* Blue accent for technical details */
+}
+
+.section-divider {
+border: 0;
+height: 1px;
+background: linear-gradient(to right, #000, #333, #000);
+margin: 60px 0;
+}
+
+.cta-services {
+text-align: center;
+padding: 30px;
+margin-top: 40px;
+border-top: 1px solid #333;
+}
+
+.cta-services p {
+font-size: 22px;
+font-weight: 600;
+margin-bottom: 20px;
+color: #f7cd46;
+}
+/* --- My Blog Section Styling --- */
+
+.blog-section {
+padding: 80px 0;
+background-color: #0d0d0d; /* Slightly lighter dark background */
+color: #fff;
+}
+
+.blog-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 30px;
+margin-top: 40px;
+}
+
+.blog-post {
+background-color: #1a1a1a;
+padding: 25px;
+border-radius: 8px;
+border-top: 5px solid transparent;
+transition: all 0.3s ease;
+}
+
+.blog-post:hover {
+border-top-color: #f7cd46;
+transform: translateY(-5px);
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.post-meta {
+font-size: 14px;
+color: #bbb;
+margin-bottom: 10px;
+}
+
+.post-meta .category {
+font-weight: 600;
+color: #f7cd46;
+}
+
+.blog-post h3 {
+font-size: 22px;
+margin-bottom: 15px;
+line-height: 1.3;
+}
+
+.blog-post h3 a {
+color: #fff;
+text-decoration: none;
+transition: color 0.3s ease;
+}
+
+.blog-post h3 a:hover {
+color: #f7cd46;
+}
+
+.blog-post p {
+font-size: 16px;
+color: #ccc;
+margin-bottom: 20px;
+}
+
+.read-more {
+color: #f7cd46;
+text-decoration: none;
+font-weight: 600;
+font-size: 15px;
+}
+
+.read-more i {
+margin-left: 5px;
+}
+
+.cta-blog {
+text-align: center;
+margin-top: 50px;
+}
+/* --- Contact Section Styling --- */
+
+.contact-section {
+padding: 80px 0;
+background-color: #000;
+}
+
+.contact-grid {
+display: flex;
+gap: 40px;
+margin-top: 40px;
+flex-wrap: wrap; /* Ensure responsiveness */
+}
+
+.contact-info {
+flex: 1;
+min-width: 300px;
+background-color: #0d0d0d;
+padding: 30px;
+border-radius: 8px;
+}
+
+.info-item {
+display: flex;
+margin-bottom: 25px;
+align-items: center;
+}
+
+.info-item i {
+font-size: 24px;
+color: #f7cd46;
+margin-right: 15px;
+width: 30px; /* fixed size for icon */
+text-align: center;
+}
+
+.info-item h4 {
+font-size: 18px;
+color: #fff;
+margin-bottom: 2px;
+}
+
+.info-item p {
+font-size: 15px;
+color: #bbb;
+}
+
+.contact-form-container {
+flex: 2;
+min-width: 400px;
+background-color: #0d0d0d;
+padding: 30px;
+border-radius: 8px;
+}
+
+.contact-form {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+}
+
+.form-group {
+flex: 1 1 calc(50% - 10px); /* Two columns layout */
+display: flex;
+flex-direction: column;
+}
+
+.form-group.full-width {
+flex: 1 1 100%;
+}
+
+.contact-form label {
+font-size: 14px;
+color: #ccc;
+margin-bottom: 5px;
+font-weight: 600;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+padding: 12px;
+border: 1px solid #333;
+border-radius: 4px;
+background-color: #222;
+color: #fff;
+font-size: 16px;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+border-color: #f7cd46;
+outline: none;
+}
+
+.btn-submit {
+background-color: #f7cd46 !important;
+color: #000 !important;
+padding: 15px 30px !important;
+font-size: 18px !important;
+font-weight: 700 !important;
+border: none !important;
+cursor: pointer;
+transition: background-color 0.3s ease;
+margin-top: 10px;
+}
+
+.btn-submit:hover {
+background-color: #e6be3f !important;
+}
+
+.form-note {
+font-size: 14px;
+color: #bbb;
+margin-top: 15px;
+text-align: center;
+width: 100%;
+}
+
+.form-note i {
+color: #f7cd46;
+margin-right: 5px;
+}
+
+/* Responsive adjustment for contact form */
+@media (max-width: 768px) {
+.contact-grid {
+flex-direction: column;
+}
+
+.form-group {
+flex: 1 1 100%; /* Single column layout on small screens */
+}
+}
+
+/* --- Navbar Styling --- */
+
+/* We will keep the .navbar .logo styles, but focus on the image tag inside.
+Ensure any previous styling for .logo-icon is removed or commented out.
+*/
+
+.navbar .logo {
+/* Kept for overall alignment, but we primarily style the img tag */
+font-size: 24px;
+font-weight: 700;
+color: #fff;
+letter-spacing: 2px;
+display: flex;
+align-items: center;
+}
+
+.navbar .logo .logo-img {
+/* Set a specific height/width for your logo image */
+height: 40px; /* Adjust this to control the size */
+width: auto; /* Maintain aspect ratio */
+object-fit: contain; /* Ensures the whole logo is visible */
+border-radius: 50%
+}
+
+.navbar {
+background-color: #000;
+padding: 20px 0;
+border-bottom: 2px solid #333;
+/* === STICKY HEADER FIX START === */
+position: fixed; /* 1. Takes the header out of the normal flow */
+top: 0; /* 2. Locks it to the top edge of the viewport */
+width: 100%; /* 3. Ensures it spans the entire screen width */
+z-index: 1000; /* 4. Ensures the navbar sits on top of all other content */
+/* === STICKY HEADER FIX END === */
+}
+
+/* --- Projects Section Styling --- */
+
+.projects-section {
+padding: 80px 0;
+background-color: #000; /* Main dark background */
+}
+
+.projects-section .section-title {
+/* Uses existing section-title styles */
+margin-bottom: 10px;
+}
+
+.projects-section .section-subtitle {
+/* Uses existing section-subtitle styles */
+margin-bottom: 50px;
+}
+
+.project-card {
+background-color: #0d0d0d;
+padding: 30px;
+border-radius: 10px;
+margin-bottom: 40px;
+border-left: 5px solid #f7cd46; /* Accent color strip */
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.project-title {
+font-size: 28px;
+color: #fff;
+font-weight: 700;
+margin-bottom: 15px;
+border-bottom: 1px solid #333;
+padding-bottom: 10px;
+}
+
+.project-meta {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+margin-bottom: 25px;
+font-size: 15px;
+color: #ccc;
+}
+
+.project-meta span i {
+color: #f7cd46;
+margin-right: 5px;
+}
+
+.project-content h4 {
+font-size: 20px;
+color: #f7cd46;
+margin-top: 20px;
+margin-bottom: 10px;
+}
+
+.project-content b {
+color: blues;
+}
+
+.project-content p {
+font-size: 16px;
+color: #bbb;
+margin-bottom: 20px;
+}
+
+.project-content ul {
+list-style: none;
+padding-left: 0;
+}
+
+.project-content ul li {
+background-color: #1a1a1a;
+padding: 10px 15px;
+margin-bottom: 8px;
+border-radius: 4px;
+border-left: 3px solid #007bff; /* Blue accent for technical details */
+font-size: 15px;
+color: #fff;
+}
+
+/* Ensure the projects section uses the correct navigation link */
+/* Update your existing navigation link for projects */
+/* <li><a href="#projects">Projects</a></li> */
+
+/* --- Skills Section Styling --- */
+
+.skills-section {
+padding: 80px 0;
+background-color: #0d0d0d; /* Slightly lighter dark background */
+}
+
+.skills-grid {
+display: grid;
+/* Create a responsive grid: 3 columns on large screens, auto-adjust on smaller screens */
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 30px;
+margin-top: 40px;
+}
+
+.skill-category {
+background-color: #1a1a1a;
+padding: 25px;
+border-radius: 8px;
+border-top: 5px solid #444; /* Subtle separation */
+transition: border-top-color 0.3s ease;
+}
+
+.skill-category:hover {
+border-top-color: #f7cd46; /* Yellow highlight on hover */
+}
+
+.category-title {
+font-size: 20px;
+color: #f7cd46;
+margin-bottom: 20px;
+padding-bottom: 10px;
+border-bottom: 1px solid #333;
+font-weight: 600;
+}
+
+.category-title i {
+margin-right: 10px;
+font-size: 22px;
+}
+
+.skill-list {
+list-style: none;
+padding: 0;
+}
+
+.skill-list li {
+padding: 8px 0;
+font-size: 16px;
+color: #fff;
+border-bottom: 1px dashed #2a2a2a;
+transition: color 0.2s ease;
+}
+
+.skill-list li:last-child {
+border-bottom: none;
+}
+
+.skill-list li:hover {
+color: #f7cd46;
+}
+
+/* Ensure the Projects navigation link is updated */
+/* <li><a href="#skills">Skills</a></li> */
+////
+
+.hover-trigger {
+/* This is the div you hover on */
+position: relative; /* Essential for positioning the child popup */
+padding: 20px;
+background-color: #f0f0f0;
+cursor: pointer;
+}
+
+.PDSpopup, .UIUXDpopup, .DRpopup, .ATMpopup, .TDpopup,
+.MAPDpopup, .WDPpopup {
+/* The popup itself */
+position: absolute;
+top: 100%; /* Position it right below the trigger div */
+left: 0;
+width: 100%;
+padding: 10px;
+z-index: 9999;
+/* Key part: Hide by default */
+visibility: hidden;
+opacity: 10;
+transition: opacity 0.3s, visibility 0.3s; /* Smooth transition */
+background-color: #0d0d0d;
+border-radius: 10px;
+margin-bottom: 40px;
+border-left: 5px solid green; /* Accent color strip */
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.PDShover-trigger:hover .PDSpopup,
+.UIUXhover-trigger:hover .UIUXDpopup,
+.DRhover-trigger:hover .DRpopup,
+.ATMhover-trigger:hover .ATMpopup,
+.TDhover-trigger:hover .TDpopup,
+.WDPhover-trigger:hover .WDPpopup,
+.MAPhover-trigger:hover .MAPDpopup {
+/* Key part: Show when the parent is hovered */
+visibility: visible;
+opacity: 1;
+}
+
+
+/* The List Container (Flexbox for grid layout) */
+.service-example-list {
+list-style: none;
+padding: 0;
+margin: 0;
+/* Enable vertical scrolling when content exceeds 120px */
+overflow-y: auto;
+/* Hide horizontal scrollbar, just in case */
+overflow-x: hidden;
+height: 60px;
+flex-wrap: wrap;
+}
+
+.service-example-list li {
+padding: 8px 5px; /* Padding to define item height */
+color: #ffffff;
+border-bottom: 1px solid #333; /* Separator for clarity */
+font-size: 0.9em;
+}
+
+/* Individual Project Card Styling (MODIFIED) */
+.service-example {
+border-radius: 10px;
+/* MODIFICATION: Set width for two cards per row (48% of container) */
+width: calc(50% - 30px);
+/* Ensure a minimum width for very large screens if desired, but 50% is generally better */
+min-width: 300px;
+box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Stronger soft shadow */
+text-align: center;
+font-size: 1.2em; /* Slightly larger font */
+font-weight: 200; /* Bolder text */
+color: white;
+transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+cursor: pointer;
+}
+
+/* Hover Effect (Kept the same functionality) */
+.service-example:hover {
+transform: translateY(-5px) scale(1.01);
+box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+background-color: #e6f3ff;
+color: #1a4d8c;
+}
+
+/* Media Query for Responsiveness (MODIFIED) */
+@media (max-width: 992px) {
+.service-example {
+/* On medium screens, still keep two per row, or adjust as needed */
+width: calc(50% - 20px);
+}
+}
+
+@media (max-width: 600px) {
+.service-example {
+width: 100%; /* Full width on small mobile screens */
+}
+}
+
+/* Custom Tailwind Configuration */
+tailwind.config = {
+theme:
+
+{
+extend:
+
+{
+colors:
+
+{
+'yt-red': '#FF0000', 'wa-green': '#25D366', 'li-blue': '#0A66C2', 'ig-pink': 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)', 'dark-bg': '#1e293b', 'dark-card': '#334155',
+}
+
+fontFamily: {
+sans: ['Inter', 'sans-serif']
+}
+
+
+
+/* Ensure the icon container uses the full height */
+html, body {
+height: 100%;
+}
+
+/* Apply Instagram gradient background */
+.instagram-icon {
+background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+/* Custom style for the logo box */
+.logo-box {
+transition: all 0.3s ease-in-out;
+}
+/* Adjusted hover effect for smaller elements */
+.logo-box:hover {
+transform: translateY(-2px) scale(1.1);
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ANIMATION START STATE: Hidden and slightly below its final position */
+.contact-section {
+opacity: 0;
+transform: translateY(20px);
+/* Defines the speed and type of animation */
+transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* ANIMATION END STATE: Triggered by JavaScript adding the 'loaded' class */
+.contact-section.loaded {
+opacity: 1;
+transform: translateY(0);
+}
+
+
+</style>
+<body>
+
+    <header class="navbar scroll-reveal">
+        <div class="container scroll-reveal">
+            <div class="logo">
+                <img src="~/Images/MyWbLogo.jpg" alt="Akshay Mamillanambolugari" class="logo-img"> KS Solutions
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active scroll-reveal">Home</a></li>
+                    <li><a href="#about" class="scroll-reveal">About</a></li>
+                    <li><a href="#professionalexperience" class="scroll-reveal">Professional Experience</a></li>
+                    <li><a href="#services-page" class="scroll-reveal">Services</a></li>
+                    <li><a href="#skills" class="scroll-reveal">Skills</a></li>
+                    <li><a href="#projects" class="scroll-reveal">Projects</a></li>
+                    <li><a href="#contact" class="scroll-reveal">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container hero-content scroll-reveal">
+            <div class="text-content">
+                <p class="greeting">HELLO!</p>
+                <h1>I'm <span class="highlight">Akshay Mamillanambolugari</span></h1>
+                <p class="subtitle">A Software Developer</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Contact ME</a>
+                    <a href="#projects" class="btn btn-secondary">MY WORKS</a>
+                </div>
+            </div>
+            <div class="image-content scroll-reveal">
+                <img src="~/Images/MyLogo.jpg" alt="Akshay Mamillanambolugari" class="profile-img">
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-me-section">
+        <div class="container about-content">
+            <div class="about-image scroll-reveal">
+                <img src="~/Images/about.jpg" alt="Akshay Mamillanambolugari" class="profile-img-small">
+            </div>
+            <div class="about-text scroll-reveal">
+                <h2 class="scroll-reveal">About <span class="highlight">Me</span></h2>
+                <p class="scroll-reveal">
+                    I’m a passionate .NET Developer with 1 year and 8 months of experience in designing, developing, and maintaining web applications using .NET Core, MVC,
+                    VB.NET, C#, JavaScript, Kendo UI, and SQL Server. Proficient in developing REST
+                    APIs, implementing background processing, and deploying applications using IIS.
+                    Strong ability to troubleshoot issues, enhance performance, and deliver scalable
+                    software for healthcare and enterprise domains.
+                </p>
+                <p class="name-display scroll-reveal">Akshay Mamillanambolugari</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="professionalexperience" class="about-me-section">
+        <div class="container about-content">
+            <div class="about-image scroll-reveal">
+                <img  src="~/Images/PE.jpg" alt="Akshay Mamillanambolugari" class="profile-img-small">
+            </div>
+            <div class="about-text">
+                <h2 class="scroll-reveal">Professional <span class="highlight">Experience</span></h2>
+                <p class="scroll-reveal">.NET Developer </p>
+                <p class="scroll-reveal">Vineyard Solutions, Hyderabad  </p>
+                <p class="scroll-reveal">Feb 2024 – Present (1 year 9 months) </p>
+                <ul>
+                    <li class="scroll-reveal">Developed and maintained web applications using .NET Core, MVC, VB.NET, and SQL Server. </li>
+                    <li class="scroll-reveal">Created RESTful APIs and implemented background services for asynchronous data processing. </li>
+                    <li class="scroll-reveal">Designed responsive UI using Kendo UI and optimized SQL queries for large-scale hospital data. </li>
+                    <li class="scroll-reveal">Hosted and managed APIs on IIS Server and worked closely with the support team to resolve real-time issues. </li>
+
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="technical-profile" class="scroll-reveal">
+        <div class="container technical-content scroll-reveal">
+            <h2 class="scroll-reveal">About <span class="highlight">Me</span>: Technical Profile</h2>
+
+            <div class="profile-block">
+                <h3 class="scroll-reveal">Core Value Proposition</h3>
+                <div class="table-container">
+                    <table class="scroll-reveal">
+                        <tr><th>Specialization</th><td>Full-stack development for secure, data-intensive web applications utilizing the Microsoft .NET stack and modern React frontend.</td></tr>
+                        <tr><th>Methodology</th><td>Agile/Scrum for iterative development, managed through JIRA. Version control is handled via Git/Bitbucket with established branching strategies.</td></tr>
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="profile-block">
+                <h3>Technical Stack and Proficiency</h3>
+                <div class="table-container">
+                    <table class="scroll-reveal">
+                        <tr><th>Backend / API</th><td>C# (.NET Core / .NET 8), VB.NET (if legacy support is key), ASP.NET MVC, .NET Core Web API (RESTful design). Proficient in creating Windows Services and Background Services (e.g., using Hangfire or Quartz.NET) for asynchronous processing.</td></tr>
+                        <tr><th>Frontend / UI</th><td>ReactJS (with Hooks and functional components), JavaScript (ES6+), HTML5/CSS3. Expert integration of the Kendo UI library for complex enterprise grids/components. TypeScript for large-scale application stability.</td></tr>
+                        <tr><th>Database </th><td>SQL Server (Advanced T-SQL, Stored Procedures, Performance Tuning) and MySQL. Include Entity Framework Core for ORM proficiency.</td></tr>
+                        <tr><th>Tools / Platforms</th><td>Visual Studio / VS Code; Deployment and management via IIS Hosting. Project and task management in JIRA; Source control via Bitbucket (Git). Add: Postman/Swagger for API testing.</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="profile-block">
+                <h3>Engineering Disciplines</h3>
+                <div class="table-container">
+                    <table class="scroll-reveal">
+                        <tr><th>Architecture</th><td>Focus on Microservices and Layered Architecture using .NET Core. Proficient in design patterns (e.g., Repository, Factory) and principles (SOLID).</td></tr>
+                        <tr><th>Code Quality</th><td>Strict adherence to SOLID principles and coding standards. Comprehensive Unit Testing (NUnit/xUnit), Integration Testing, and mandatory Bitbucket Peer Review workflows.</td></tr>
+                        <tr><th>Security </th><td>Implementing secure coding practices to prevent OWASP Top 10 vulnerabilities in ASP.NET Core applications. Experience with OAuth 2.0/JWT for secure API communication.</td></tr>
+                        <tr><th>Performance</th><td>Optimization of database queries and frontend rendering. Experience with caching strategies (Redis/Memcached) and lazy loading in ReactJS.</td></tr>
+                    </table>
+                   
+                </div>
+
+                <div class="cta-banner scroll-reveal">
+                    <p>Ready to discuss how this expertise can solve your unique business challenges?</p>
+                    <a href="#" class="btn btn-primary btn-cta">SCHEDULE A TECHNICAL DEEP DIVE</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="skills" class="scroll-reveal">        
+        <div class="container scroll-reveal">           
+            <h2 style=" font-size: 32px; font-weight: 600; color: #f7cd46;" class="scroll-reveal">My <span class="highlight">Skills</span> & Technical Stack</h2>
+            <p  style=" font-size: 16px;" class="scroll-reveal">Proficient in full-stack development with a strong focus on the Microsoft and modern web ecosystem.</p>
+
+            <div class="skills-grid">
+
+                <div class="skill-category">
+                    <h3 class="category-title"><i class="fas fa-terminal"></i> PROGRAMMING LANGUAGES</h3>
+                    <ul class="skill-list scroll-reveal">
+                        <li>C# (Expert)</li>
+                        <li>VB.NET</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>Java</li>
+                        <li>Python</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category scroll-reveal">
+                    <h3 class="category-title"><i class="fas fa-globe"></i> WEB TECHNOLOGIES</h3>
+                    <ul class="skill-list">
+                        <li>ReactJS</li>
+                        <li>HTML5 / CSS3</li>
+                        <li>JavaScript</li>
+                        <li>Kendo UI (Specialized Component Library)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category scroll-reveal">
+                    <h3 class="category-title"><i class="fas fa-layer-group"></i> FRAMEWORKS</h3>
+                    <ul class="skill-list">
+                        <li>.NET Core / .NET 8</li>
+                        <li>ASP.NET MVC</li>
+                        <li>ReactJS (as a framework/library)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category scroll-reveal">
+                    <h3 class="category-title"><i class="fas fa-database"></i> DATABASE</h3>
+                    <ul class="skill-list">
+                        <li>SQL Server (Advanced Querying & Management)</li>
+                        <li>MySQL</li>
+                        <li>Oracle</li>
+                        <li>MangoDB</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category scroll-reveal">
+                    <h3 class="category-title"><i class="fas fa-wrench"></i> TOOLS/PLATFORMS</h3>
+                    <ul class="skill-list">
+                        <li>Visual Studio</li>
+                        <li>IIS (Internet Information Services)</li>
+                        <li>BitBucket (Git/Version Control)</li>
+                        <li>JIRA (Project Management)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category scroll-reveal">
+                    <h3 class="category-title"><i class="fas fa-cogs"></i>INFRASTRUCTURE & SERVICES</h3>
+                    <ul class="skill-list">
+                        <li>IIS Hosting & Configuration</li>
+                        <li>.NET Core Web API Development</li>
+                        <li>Windows Services</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category scroll-reveal">
+                    <h3 class="category-title"><i class="fas fa-globe"></i> Microsoft Tools</h3>
+                    <ul class="skill-list">
+                        <li>Word</li>
+                        <li>Excel</li>
+                        <li>Powerpoint</li>
+                        <li>Outlook</li>
+                        <li>Teams</li>
+                        <li>Onenote</li>
+                        <li>Copilot</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category scroll-reveal">
+                    <h3 class="category-title"><i class="fas fa-globe"></i> Other Tools</h3>
+                    <ul class="skill-list">
+                        <li>Draw.io</li>
+                        <li>Note Plus</li>
+                        <li>Notepad</li>
+                        <li>Notepad++</li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="projects" class="projects-section scroll-reveal">
+        <div class="container">
+            <h2  style=" font-size: 32px; font-weight: 600; color: #f7cd46;" class="scroll-reveal">Key <span class="highlight">Projects</span> & Case Studies</h2>
+            <p style=" font-size: 16px;" class="section-subtitle">Showcasing expertise in secure API development, real-time monitoring, and healthcare data integration.</p>
+
+            <div class="project-card">
+                <h3 class="project-title scroll-reveal">Project 1: Kasio</h3>
+
+                <div class="project-meta scroll-reveal">
+                    <span><i class="fas fa-user-tie"></i> Role: Frontend Developer</span>
+                    <span><i class="fas fa-code"></i> Technologies: HTML, JavaScript, CSS</span>
+                </div>
+
+                <div class="project-content">
+                    <h4 class="scroll-reveal">Description:</h4>
+                    <p class="scroll-reveal">This project demonstrates strong foundational skills in core web technologies and front-end logic development, focusing on utility and complex calculations.</p>
+
+                    <h4 class="scroll-reveal">Key Responsibilities:</h4>
+                    <ul>
+                        <li class="scroll-reveal"><b>Logic Development:</b> Developed over 50 complex mathematical functions (Arithmetic, Logarithmic, Bit-wise) using native JavaScript.</li>
+                        <li class="scroll-reveal"><b>User Interface:</b> Designed and implemented the application's entire UI using HTML and CSS from scratch, ensuring high usability for engineering students.</li>
+                        <li class="scroll-reveal"><b>Algorithm Implementation :</b> Wrote custom algorithms in JavaScript to handle precision and edge cases inherent in high-level logarithmic and mathematical calculations.</li>
+                        <li class="scroll-reveal"><b>Testing:</b> Performed rigorous unit testing and function validation to ensure the accuracy of all 50+ calculation modes.</li>
+                    </ul>
+
+                    <h4 class="scroll-reveal">Technical Solution & Scope:</h4>
+                    <p class="scroll-reveal">You developed the entire application from scratch using core front-end languages.</p>
+                    <ul>
+                        <li class="scroll-reveal"><b>Front-End Implementation:</b> Leveraged HTML for structure and CSS for a clean, user-friendly interface suitable for complex inputs.</li>
+                        <li class="scroll-reveal">
+                            <b>Complex Logic Development:</b> The bulk of the work involved extensive JavaScript development to implement the various functions:
+                            <ul>
+                                <li class="scroll-reveal"><b>Arithmetic:</b> Basic and complex multi-step calculations.</li>
+                                <li class="scroll-reveal"><b>ALogarithmic:</b> Natural and base-10 logarithmic functions.</li>
+                                <li class="scroll-reveal"><b>Bit-wise:</b> Functions for binary manipulation.</li>
+                                <li class="scroll-reveal"><b>Math Calculators:</b> Implementation of advanced engineering-specific functions (e.g., trigonometry, powers, roots).</li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <h3 class="project-title scroll-reveal">Project 2: Donation Management</h3>
+
+                <div class="project-meta">
+                    <span class="scroll-reveal"><i class="fas fa-user-tie"></i> Role: React.JS Full-stack Developer</span>
+                    <span class="scroll-reveal"><i class="fas fa-code"></i> Technologies: ReactJS,React with Redux , JSON , Tailwindcss</span>
+                </div>
+
+                <div class="project-content">
+                    <h4 class="scroll-reveal">Description:</h4>
+                    <p class="scroll-reveal">This project highlights experience with modern JavaScript frameworks and essential state management techniques, critical skills for large, interactive applications.</p>
+
+                    <h4 class="scroll-reveal">Key Responsibilities:</h4>
+                    <ul>
+                        <li class="scroll-reveal"><b>Front-End Development:</b> Built a single-page application (SPA) using ReactJS with a focus on reusable, component-based architecture for the 5 primary screens.</li>
+                        <li class="scroll-reveal"><b>State Management:</b> Integrated Redux to manage the global application state (Donor and Amount details), ensuring predictable data flow and consistency across all components.</li>
+                        <li class="scroll-reveal"><b>Styling & Design:</b> Implemented responsive and modern styling using Tailwind CSS, allowing for rapid UI development and mobile-first design.</li>
+                        <li class="scroll-reveal"><b>Data Handling:</b> Designed and structured the JSON data schema used for storing and retrieving donor and transaction details.</li>
+                    </ul>
+
+                    <h4 class="scroll-reveal">Technical Solution & Scope:</h4>
+                    <p class="scroll-reveal">You used a modern, scalable web stack to manage data and user interactions across five screens: Donation Form, Donors List, Amount Ledger, Delete Functionality, and User Names.</p>
+                    <ul>
+                        <li class="scroll-reveal"><b>Modern Front-End:</b> Built the user interface using ReactJS, ensuring a dynamic and component-based structure for easy maintenance.</li>
+                        <li class="scroll-reveal"><b>State Management:</b> Implemented React with Redux to handle application state (donor data, amounts, and user lists) centrally and predictably. This ensures data consistency across the different screens.</li>
+                        <li class="scroll-reveal"><b>Styling and Design:</b>Utilized Tailwind CSS for rapid and utility-first styling, enabling a clean, responsive, and professional design across all screens.</li>
+                        <li class="scroll-reveal"><b>Data Handling:</b>Handled data in JSON format, demonstrating proficiency in processing structured data within a front-end application.</li>
+                    </ul>
+
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="project-card">
+                <h3 class="project-title scroll-reveal">Project 3: Job Recuriment Form</h3>
+
+                <div class="project-meta">
+                    <span class="scroll-reveal"><i class="fas fa-user-tie"></i> Role: Java Developer</span>
+                    <span class="scroll-reveal"><i class="fas fa-code"></i> Technologies: Java, JavaSE ,JSP</span>
+                </div>
+
+                <div class="project-content">
+                    <h4 class="scroll-reveal">Description:</h4>
+                    <p class="scroll-reveal">This project demonstrates foundational experience in enterprise Java development, including server-side rendering and traditional web application architecture.</p>
+
+                    <h4 class="scroll-reveal">Key Responsibilities:</h4>
+                    <ul>
+                        <li class="scroll-reveal"><b>Backend Processing:</b> Developed core server-side logic in Java SE to handle form submission, data validation, and business rule enforcement.</li>
+                        <li class="scroll-reveal"><b>Presentation Layer:</b> Created dynamic web pages and forms using JSP (JavaServer Pages) to capture detailed employee educational and personal information.</li>
+                        <li class="scroll-reveal"><b>SData Validation:</b> Implemented comprehensive server-side validation routines in Java for educational fields (SSC, Intermediate/Diploma, Degree/B.Tech) to ensure data integrity.</li>
+                        <li class="scroll-reveal"><b>Form Structure:</b> Designed the structure of the multi-part recruitment form to meticulously collect hierarchical educational and personal data from employees.</li>
+                    </ul>
+
+                    <h4 class="scroll-reveal">Technical Solution & Scope:</h4>
+                    <p class="scroll-reveal">You developed a multi-stage data collection form using traditional Java web technologies.</p>
+                    <ul>
+                        <li class="scroll-reveal"><b>Backend and Logic::</b> Used Java and Java SE for core application logic, data validation, and processing the submitted form data on the server side.</li>
+                        <li class="scroll-reveal"><b>State Management:</b> Implemented React with Redux to handle application state (donor data, amounts, and user lists) centrally and predictably. This ensures data consistency across the different screens.</li>
+                        <li class="scroll-reveal"><b>Presentation Layer:</b>Employed JSP (JavaServer Pages) to handle the dynamic generation of the HTML form and display any server-side validation messages to the user.</li>
+                        <li class="scroll-reveal"><b>Data Collection Detail:</b>The application was designed to meticulously collect layered educational details, including SSC, Intermediate/Diploma, and Degree/B.Tech, alongside standard employee personal information.</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="services-page" class="industry-services-section scroll-reveal">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">Tech Services Hub</h2>
+            <p class="section-subtitle scroll-reveal">We build specialized web applications that solve the unique operational and compliance challenges faced by professional services and hospitality firms.</p>
+
+            <div class="service-block accountant-service scroll-reveal">
+                <h3 class="service-title scroll-reveal">Development Services </h3>
+                <p class="service-intro scroll-reveal">Here are some our services specifically tailored for students working on academic software projects, along with platforms where they can find support or hire help:</p>
+
+                <div class="features-grid scroll-reveal">
+                    <div class="feature-card WDPhover-trigger scroll-reveal">
+                        <h4 class="scroll-reveal"> Web Development Projects</h4>
+                        <ul>
+                            <li class="scroll-reveal">Frontend (HTML, CSS, JavaScript, React)</li>
+                            <li class="scroll-reveal">Backend (Node.js, PHP, Django)</li>
+                            <li class="scroll-reveal">Database setup (MySQL, MongoDB)</li>
+                            <li class="scroll-reveal">Hosting and deployment (GitHub Pages, Heroku)</li>
+                        </ul>
+                        <div class="WDPpopup">
+                            <ul class="service-example-list">
+                                <li class="service-example">Online Examination System</li>
+                                <li class="service-example">Student Feedback Portal</li>
+                                <li class="service-example">College Admission Management System</li>
+                                <li class="service-example">Online Course Registration System</li>
+                                <li class="service-example">Hostel Management System</li>
+                                <li class="service-example">E-Library System</li>
+                                <li class="service-example">Online Internship Tracker</li>
+                                <li class="service-example">Faculty Evaluation System</li>
+                                <li class="service-example">Student Grievance Portal</li>
+                                <li class="service-example">Online Quiz App</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="feature-card technical-focus MAPhover-trigger">
+                        <h4 class="scroll-reveal">Mobile App Development</h4>
+                        <ul>
+                            <li class="scroll-reveal">Android/iOS development (Java, Kotlin, Flutter)</li>
+                            <li class="scroll-reveal">UI/UX design</li>
+                            <li class="scroll-reveal">Push notifications setup</li>
+                        </ul>
+                        <div class="MAPDpopup">
+                            <ul class="service-example-list">
+                                <li class="service-example">Campus Navigation App</li>
+                                <li class="service-example">Student Expense Tracker</li>
+                                <li class="service-example">College Event Reminder App</li>
+                                <li class="service-example">Study Group Chat App</li>
+                                <li class="service-example">Student Health Monitoring App</li>
+                                <li class="service-example">Exam Preparation App</li>
+                                <li class="service-example">Attendance Scanner using QR Code</li>
+                                <li class="service-example">Online Notes Sharing App</li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="feature-card PDShover-trigger">
+                        <h4 class="scroll-reveal">Project Development Support</h4>
+                        <ul>
+                            <li class="scroll-reveal">Custom coding for academic assignments (Java, Python, C++, etc.)</li>
+                            <li class="scroll-reveal">Web and mobile app development for final year projects</li>
+                            <li class="scroll-reveal">Backend and database setup (MySQL, MongoDB, Firebase)</li>
+                        </ul>
+                        <div class="PDSpopup">
+                            <ul class="service-example-list">
+                                <li class="service-example">Online Voting System</li>
+                                <li class="service-example">Student Attendance Portal</li>
+                                <li class="service-example">Library Management System</li>
+                                <li class="service-example">College Admission Tracker</li>
+                                <li class="service-example">Online Internship Portal</li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="feature-card technical-focus UIUXhover-trigger">
+                        <h4 class="scroll-reveal">UI/UX Design</h4>
+                        <ul>
+                            <li class="scroll-reveal">Wireframes and mockups for student apps</li>
+                            <li class="scroll-reveal">Frontend design using HTML/CSS, React, Flutter</li>
+                        </ul>
+                        <div class="UIUXDpopup">
+                            <ul class="service-example-list">
+                                <li class="service-example">College Event Reminder App</li>
+                                <li class="service-example">Digital ID Card App</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="feature-card DRhover-trigger">
+                        <h4 class="scroll-reveal"> Documentation & Reports</h4>
+                        <ul>
+                            <li class="scroll-reveal">Help with writing project reports, abstracts, and user manuals</li>
+                            <li class="scroll-reveal">IEEE-format documentation and research paper assistance</li>
+                        </ul>
+                        <div class="DRpopup">
+                            <ul class="service-example-list">
+                                <li class="service-example">Final Year Project Report (IEEE Format)</li>
+                                <li class="service-example">System Requirement Specification (SRS)</li>
+                                <li class="service-example">User Manual for Web App</li>
+                                <li class="service-example">Research Paper on Student Performance Analytics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="feature-card technical-focus ATMhover-trigger">
+                        <h4 class="scroll-reveal">Academic Tutoring & Mentoring</h4>
+                        <ul>
+                            <li class="scroll-reveal">One-on-one guidance for project planning and execution</li>
+                            <li class="scroll-reveal">Debugging and code review sessions</li>
+                        </ul>
+                        <div class="ATMpopup">
+                            <ul class="service-example-list">
+                                <li class="service-example">Code Review for React-based Student Portal</li>
+                                <li class="service-example">Project Timeline & Milestone Setup</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="feature-card TDhover-trigger">
+                        <h4> Testing & Deployment</h4>
+                        <ul>
+                            <li class="scroll-reveal">Unit testing, integration testing</li>
+                            <li class="scroll-reveal">Hosting student projects on GitHub, Heroku, or Firebase</li>
+                        </ul>
+                        <div class="TDpopup">
+                            <ul class="service-example-list">
+                                <li class="service-example">CI/CD Setup for Student Web App</li>
+                                <li class="service-example">Firebase Hosting for College Portal</li>
+                                <li class="service-example">GitHub Actions for Deployment</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr class="section-divider">
+
+        </div>
+    </section>
+    <section id="contact" class="contact-section scroll-reveal">
+        <div class="container">
+            <h2 style=" font-size: 32px; font-weight: 600; color: #f7cd46;" class="scroll-reveal">Get in Touch</h2>
+            <p class="section-subtitle scroll-reveal">Let's discuss your next web application. Fill out the form below or use our direct contact methods.</p>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-item scroll-reveal">
+                        <i class="fas fa-map-marker-alt scroll-reveal"></i>
+                        <h4 class="scroll-reveal">Office Base</h4>
+                        <p class="scroll-reveal">Remote / Global Consulting</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope scroll-reveal"></i>
+                        <h4 class="scroll-reveal">Email Inquiry</h4>
+                        <p class="scroll-reveal">mamillaakshay8@gmail.com</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt scroll-reveal"></i>
+                        <h4 class="scroll-reveal">Dedicated Line</h4>
+                        <p class="scroll-reveal">+91 77991 06880 (Booked Consultations Only)</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-handshake scroll-reveal"></i>
+                        <h4 class="scroll-reveal">Availability</h4>
+                        <p class="scroll-reveal"> 09:00 AM - 09:00 PM IST (Technical Consultations)</p>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form id="inquiryForm" method="POST" class="contact-form">
+
+                        <div class="form-group">
+                            <label class="scroll-reveal" for="name">Your Name</label>
+                            <input class="scroll-reveal" type="text" id="name" name="Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="scroll-reveal" for="company">Company Name</label>
+                            <input class="scroll-reveal" type="text" id="company" name="Company" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="scroll-reveal" for="email">Work Email</label>
+                            <input class="scroll-reveal" type="email" id="email" name="Email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="scroll-reveal" for="budget">Estimated Budget Range</label>
+                            <select id="budget" name="BudgetRange" required>
+                                <option value="">Select an estimated budget</option>
+                                <option value="Less than ₹5k">Less than ₹5,000</option>
+                                <option value="₹5k - ₹10k">₹5,000 - ₹10,000</option>
+                                <option value="₹10k - ₹20k">₹10,000 - ₹20,000</option>
+                                <option value="Over ₹30k">More than ₹30,000</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="scroll-reveal" for="description">Project Description (The Business Problem)</label>
+                            <textarea class="scroll-reveal" id="description" name="Description" rows="5" required placeholder="Tell us the business pain point you need a web application to solve."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-submit full-width scroll-reveal">SUBMIT INQUIRY</button>
+                        <p class="form-note scroll-reveal"><i class="fas fa-lock"></i> All submissions are treated as strictly confidential.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Reduced max-width for a smaller footprint -->
+    <div class="w-full max-w-sm mt-8">
+        <h2 class="text-xl font-bold text-center mb-4 text-white">
+            Quick Links
+        </h2>
+
+        <!-- Container for the social media icons - now a horizontal flex row -->
+        <div id="social-links-container" class="flex flex-row justify-center gap-3 scroll-reveal">
+            <!-- Logos will be injected here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+
+      document.addEventListener('DOMContentLoaded', () => {
+          // 1. Select all elements to be observed
+          const sections = document.querySelectorAll('.scroll-reveal');
+
+          // 2. Define Observer Options
+          const observerOptions = {
+              root: null, // relative to the viewport
+              rootMargin: '0px',
+              threshold: 0.1 // Triggers when 10% of the element is visible
+          };
+
+          // 3. Define the Callback Function
+          const observerCallback = (entries, observer) => {
+              entries.forEach(entry => {
+                  // Check if the element is currently intersecting (in the viewport)
+                  if (entry.isIntersecting) {
+                      // Trigger the animation by adding the visible class
+                      entry.target.classList.add('is-visible');
+
+                      // Crucial: Stop observing the element so the animation only plays once
+                      observer.unobserve(entry.target);
+                  }
+              });
+          };
+
+          // 4. Create and Attach the Observer
+          const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+          // Apply the observer to every section
+          sections.forEach(section => {
+              observer.observe(section);
+          });
+      });
+
+      // Array defining the social media links, icons, and colors
+      const socialMediaLinks = [
+          {
+              name: 'YouTube',
+              url: 'https://www.youtube.com/channel/UCcNNuk3Womja00uaRRDIpwg',
+              iconClass: 'fab fa-youtube',
+              bgColor: 'bg-yt-red',
+              hoverBg: 'hover:bg-red-700'
+          },
+          {
+              name: 'WhatsApp',
+              url: 'https://wa.me/qr/YA2EDTLRLI2MI1',
+              iconClass: 'fab fa-whatsapp',
+              bgColor: 'bg-wa-green',
+              hoverBg: 'hover:bg-green-600'
+          },
+          {
+              name: 'LinkedIn',
+              url: 'https://www.linkedin.com/in/akshay-mamilla-nambolugari-65176a234/',
+              iconClass: 'fab fa-linkedin-in',
+              bgColor: 'bg-li-blue',
+              hoverBg: 'hover:bg-blue-700'
+          },
+          {
+              name: 'Instagram',
+              url: 'https://www.instagram.com/akshaymamilla/?utm_source=qr&igsh=MTM3eDh0dTlqbWUwZg%3D%3D#',
+              iconClass: 'fab fa-instagram',
+              bgColor: 'instagram-icon', // Custom gradient class
+              hoverBg: 'hover:opacity-90'
+          }
+      ];
+
+const container = document.getElementById('social-links-container');
+   
+    function createSocialLink(linkData) {
+          const linkElement = document.createElement('a');
+
+          // Set attributes for accessibility and new tab opening
+          linkElement.href = linkData.url;
+          linkElement.target = '_blank';
+          linkElement.rel = 'noopener noreferrer';
+
+          // Base Tailwind classes: Changed p-6 to p-3, rounded-2xl to rounded-full,
+          // and added fixed w-12 h-12 for a small circular button look.
+          linkElement.className = `
+    logo-box
+    flex items-center justify-center
+    w-12 h-12 p-3 rounded-full shadow-lg cursor-pointer
+    text-white transition duration-300 ease-in-out
+    transform hover:shadow-xl
+    ${linkData.bgColor} ${linkData.hoverBg}
+    `;
+
+          // Apply custom styles for Instagram gradient
+          if (linkData.name === 'Instagram') {
+              linkElement.style.background = 'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)';
+              linkElement.className = linkElement.className.replace('text-white', 'text-gray-100');
+          }
+
+
+          // Icon element: Reduced size from text-5xl/6xl to text-xl
+          const icon = document.createElement('i');
+          icon.className = `${linkData.iconClass} text-xl`;
+
+          // Name label creation has been removed for a minimal UI.
+
+          // Assemble the elements
+          linkElement.appendChild(icon);
+
+          // Append to the main container
+          container.appendChild(linkElement);
+      }
+
+      // Loop through the data and create the elements
+      socialMediaLinks.forEach(createSocialLink);
+
+      // --- 2. Form Submission Logic (New) ---
+
+      const inquiryForm = document.getElementById('inquiryForm');
+
+      // Target email address provided by the user (using encodeURIComponent for safety)
+      const targetEmail = 'mamamillaakshay8@gmail.com';
+      const subject = 'New Client Inquiry via Contact Portal';
+
+      inquiryForm.addEventListener('submit', function (e) {
+          e.preventDefault(); // Stop the default form submission
+
+          const formData = new FormData(inquiryForm);
+
+          // Collect form data into a structured object
+          const data = {};
+          for (const [key, value] of formData.entries()) {
+              data[key] = value;
+          }
+
+          // Format the email body content
+          let body = `
+    --- CLIENT INQUIRY DETAILS ---
+
+    Name: ${data.Name || 'N/A'}
+    Company Name: ${data.Company || 'N/A'}
+    Work Email: ${data.Email || 'N/A'}
+    Estimated Budget: ${data.BudgetRange || 'N/A'}
+
+    --- PROJECT DESCRIPTION ---
+
+    ${data.Description || 'No description provided.'}
+
+    -----------------------------
+    (Sent from the Company Contact Portal)
+    `.trim(); // Remove leading/trailing whitespace
+
+          // Construct the mailto URL
+          // Encode the subject and body to handle special characters and line breaks
+          const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+          // Open the user's default email client
+          window.location.href = mailtoLink;
+
+          // Optional: Provide visual feedback if the user's email client doesn't open
+          console.log("Email client opened with pre-filled content. If nothing opened, check console for mailto link:", mailtoLink);
+      });
+    </script>
+</body>
+</html>
